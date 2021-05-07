@@ -1,0 +1,799 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  height: 100vh;
+  width: calc(100vw - 72px - 242px);
+  background: $dk-main-bg;
+  position: relative;
+}
+
+.nav-bar {
+  height: 50px;
+  width: calc(100vw - 314px);
+  background: $dk-main-bg;
+  border-bottom: 1px solid rgb(43, 45, 50);
+  display: flex;
+  padding: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .channel-name,
+  .dm-name,
+  .friends-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: inherit;
+    max-width: calc(100vw - 730px);
+    flex: 1;
+
+    svg {
+      color: rgb(114, 118, 125);
+      transform: translateY(3px);
+    }
+
+    .name {
+      max-width: calc(100vw - 760px);
+    }
+
+    .name h3,
+    h3 {
+      font-family: "Whitney Medium";
+      padding-left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+
+    .convo-name {
+      color: rgb(220, 221, 222);
+    }
+
+    .convo-name.owner {
+      cursor: text;
+      padding: 0 5px;
+      margin-left: 5px;
+
+      &:hover {
+        border: 1px solid black;
+        border-radius: 3px;
+      }
+    }
+
+    form {
+      width: 100%;
+      height: 26px;
+    }
+
+    .convo-name-change {
+      width: 100%;
+      max-width: 400px;
+      height: 25px;
+      padding: 0 5px;
+      margin: 0 5px;
+      box-sizing: border-box;
+
+      font: {
+        family: "Whitney Medium";
+        size: 16px;
+      }
+
+      color: rgb(220, 221, 222);
+      border: 1px solid black;
+      border-radius: 3px;
+    }
+
+    .topic {
+      margin-left: 15px;
+      border-left: 0.5px solid rgb(66, 69, 74);
+      padding-left: 15px;
+      transform: translateY(1px);
+      @include text-overflow;
+      flex: 0 1 auto;
+
+      h4 {
+        color: rgb(185, 187, 190);
+        line-height: 1.1;
+        transform: translateY(1px);
+        @include text-overflow;
+
+        font: {
+          size: 14px;
+          family: "Whitney Medium";
+        }
+      }
+    }
+  }
+
+  .friends-bar {
+    .title {
+      display: flex;
+      flex-direction: row;
+      padding-right: 15px;
+      border-right: 0.1px solid rgb(66, 69, 74);
+
+      h3 {
+        font-family: "Whitney Medium";
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin: 0 8px;
+        padding: 2px 8px;
+        height: 25px;
+
+        border-radius: 5px;
+
+        h3 {
+          font-size: 16px;
+          padding: 0;
+          height: 80%;
+        }
+      }
+
+      .friends-tab {
+        @include flex(row, space-between, center);
+        h3 {
+          color: $dk-icons;
+        }
+
+        .notification {
+          height: 17px;
+          width: 17px;
+          color: $dk-white;
+          font-size: 10px;
+          margin-left: 8px;
+          height: 80%;
+        }
+
+        &:hover {
+          background: rgb(58, 62, 68);
+          color: rgb(220, 221, 222);
+        }
+      }
+
+      .friends-tab.active {
+        background: rgb(58, 62, 68);
+        color: rgb(220, 221, 222);
+        cursor: default;
+      }
+
+      .add-friend {
+        background: $dk-green;
+      }
+
+      .add-friend.active {
+        background: rgb(58, 82, 76);
+        color: $dk-green;
+      }
+    }
+  }
+
+  .nav-icon-group {
+    color: $dk-icons;
+
+    a {
+      color: $dk-icons;
+    }
+
+    .channel {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .nav-icon {
+      margin-left: 20px;
+      height: 20px;
+      // cursor: pointer;
+      position: relative;
+      color: $dk-icons;
+      padding: 1px;
+
+      & > * {
+        height: 100%;
+        width: auto;
+      }
+
+      &:hover {
+        color: $dk-white;
+      }
+    }
+
+    .nav-icon.f {
+      margin-left: 10px;
+    }
+
+    .nav-icon.active {
+      color: $dk-white;
+
+      &:hover {
+        color: $dk-icons;
+      }
+    }
+
+    .search-wrapper {
+      height: 26px;
+      background: $dk-search-bg;
+      border-radius: 3px;
+      margin-left: 20px;
+
+      .search-bar {
+        box-sizing: content-box;
+        width: 143px;
+        padding: 0 5px;
+        height: 97%;
+        background: $dk-search-bg;
+        color: rgb(111, 115, 122);
+        border: {
+          top-left-radius: 3px;
+          bottom-left-radius: 3px;
+        }
+        font: {
+          family: "Whitney Medium";
+        }
+      }
+
+      .search-icon {
+        transform: translateX(-5px);
+        cursor: text;
+      }
+    }
+  }
+
+  .grp-dm {
+    padding-right: 20px;
+    border-right: 0.1px solid rgb(66, 69, 74);
+  }
+}
+
+.user-bar {
+  width: 242px;
+  height: 53px;
+  padding: 10px;
+  background: $dk-user-set-bg;
+  color: $dk-icons;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .user {
+    display: flex;
+    flex-direction: row;
+
+    .avatar-with-status {
+      height: 32px;
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+    }
+
+    .info {
+      margin-left: 7px;
+      max-width: 95px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      h1 {
+        cursor: default;
+        color: $dk-white;
+        font: {
+          family: "Whitney Bold";
+          size: 14px;
+        }
+      }
+
+      h2 {
+        cursor: default;
+        font: {
+          family: "Whitney Medium";
+          weight: 400;
+          size: 12px;
+        }
+      }
+    }
+  }
+
+  .user-bar-ilist {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+    align-items: center;
+    justify-content: flex-end;
+
+    .user-bar-icon {
+      box-sizing: content-box;
+      width: 33px;
+      height: 33px;
+      // cursor: pointer;
+      border-radius: 4px;
+      color: $dk-icons;
+      position: relative;
+
+      & > * {
+        font-size: 18px;
+      }
+
+      &:hover {
+        color: $dk-white;
+        background: rgb(54, 56, 62);
+      }
+    }
+  }
+}
+
+button.disabled {
+  cursor: not-allowed;
+}
+
+.side-bar.convo {
+  position: relative;
+  .convo-search {
+    cursor: default;
+    height: 50px;
+    border-bottom: 1px solid rgb(35, 36, 40);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+
+    button {
+      border-radius: 3px;
+      background: $dk-search-bg;
+      color: rgb(111, 115, 122);
+      height: 30px;
+      width: 100%;
+      font: {
+        size: 14px;
+        family: "Whitney Medium";
+      }
+      text-align: left;
+      padding-left: 7px;
+    }
+  }
+}
+
+.dropdown-bg {
+  cursor: default;
+}
+
+.dm-dropdown {
+  background: $dk-main-bg;
+  border-radius: 4px;
+  border: 1px solid $dk-search-bg;
+  width: 442px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  .dmd-head {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    h4 {
+      color: $dk-white;
+      cursor: default;
+      line-height: normal;
+
+      font: {
+        size: 16px;
+        family: "Whitney Medium";
+      }
+      &:hover {
+        color: $dk-white;
+      }
+    }
+
+    p {
+      color: rgb(183, 185, 188);
+      padding-bottom: 8px;
+      font-family: "Whitney";
+    }
+
+    .input-wrapper {
+      background: $dk-search-bg;
+      border-radius: 3px;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      min-height: 34px;
+      width: 100%;
+
+      .dm-members {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 1px;
+
+        .selected-mem {
+          margin: 1px;
+
+          .remove-btn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: $dk-main-bg;
+            border-radius: 3px;
+            height: 30px;
+            white-space: nowrap;
+            padding: 12px;
+            color: rgb(220, 221, 222);
+            margin-bottom: 0;
+
+            h4 {
+              cursor: pointer;
+              font: {
+                family: "Whitney";
+              }
+            }
+
+            svg {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        .search-li {
+          height: 34px;
+          width: 100%;
+          max-width: 250px;
+          min-width: 50px;
+          flex: 1;
+          .friend-search {
+            box-sizing: border-box;
+            background: $dk-search-bg;
+            color: rgb(220, 221, 222);
+            border-radius: 3px;
+            height: 100%;
+            width: 100%;
+            max-width: 250px;
+            min-width: 50px;
+            padding: 8px 10px;
+            cursor: text;
+            overflow-x: auto;
+
+            -ms-overflow-style: none;
+
+            font: {
+              family: "Whitney";
+              size: 16px;
+              weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // .dmd-head.scroll {
+  //   border-bottom: 0.5px solid rgb(40, 43, 46);
+  // }
+
+  .dmd-users {
+    height: 190px;
+    overflow-y: scroll;
+    padding: 0 12px;
+
+    ul {
+      padding: 0;
+    }
+
+    .dmd-user-li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      padding: 5px 10px;
+      width: 100%;
+      border-radius: 4px;
+
+      .user {
+        display: flex;
+        align-items: center;
+      }
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
+      h4 {
+        color: rgb(220, 221, 222);
+        padding-right: 5px;
+        font: {
+          family: "Whitney Medium";
+          size: 14px;
+        }
+      }
+
+      h5 {
+        color: rgb(120, 122, 127);
+        font: {
+          family: "Whitney Medium";
+          size: 14px;
+        }
+      }
+
+      &:hover {
+        background: rgb(62, 65, 72);
+        .tick {
+          color: rgb(62, 65, 72);
+        }
+      }
+
+      .container {
+        display: block;
+        position: relative;
+        transform: translateY(-5px);
+        margin-right: 22px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 22px;
+        width: 22px;
+        border: 1px solid rgb(114, 118, 125);
+        border-radius: 5px;
+
+        .tick {
+          font-size: 16px;
+          transform: translateY(-1px);
+          color: $dk-main-bg;
+          display: none;
+        }
+      }
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked {
+          & ~ .checkmark {
+            background: $dk-white;
+            border: none;
+            .tick {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dmd-head.no-friends {
+    border-bottom: none;
+  }
+
+  .dmd-users.no-friends {
+    height: auto;
+
+    p {
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+
+  .dmd-foot {
+    padding: 20px;
+
+    .grp-dm-btn,
+    .grp-dm-friend-btn {
+      width: 100%;
+      height: 40px;
+      background: $dk-blue;
+      color: $dk-white;
+      border-radius: 4px;
+      justify-content: center;
+      @include button-transition;
+
+      font: {
+        family: "Whitney Medium";
+        size: 14px;
+      }
+
+      &:hover {
+        background: $dk-blue-hover;
+      }
+    }
+
+    .grp-dm-friend-btn {
+      background: $dk-green;
+      &:hover {
+        background: $dk-green-hover;
+      }
+    }
+  }
+}
+
+.channel-list.convo {
+  .dm-list-head {
+    padding: 0 5px;
+
+    h2 {
+      padding-left: 10px;
+    }
+
+    &:hover {
+      color: rgb(220, 221, 222);
+    }
+  }
+  .convo-li {
+    height: 45px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+
+    .avatar,
+    .group-dm-icon {
+      height: 35px;
+      width: 35px;
+      min-width: 35px;
+    }
+
+    .convo-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 12px;
+
+      h2 {
+        color: rgb(138, 141, 146);
+        max-width: 158px;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font: {
+          family: "Whitney Medium";
+          size: 16px;
+        }
+      }
+      h3 {
+        padding-top: 1px;
+        margin-left: 0;
+        color: rgb(138, 141, 146);
+        font: {
+          size: 12px;
+        }
+      }
+    }
+
+    .close-dm {
+      display: none;
+      position: absolute;
+      right: 10px;
+    }
+
+    &:hover {
+      .avatar-with-status {
+        .badge-bg.sidebar {
+          background: $dk-channel-hover;
+        }
+      }
+      .convo-info {
+        h2 {
+          max-width: 135px;
+        }
+        h2,
+        h3 {
+          color: $dk-off-white;
+        }
+      }
+
+      .close-dm {
+        display: block;
+        color: $dk-close-dm;
+
+        &:hover {
+          color: $dk-off-white;
+        }
+      }
+    }
+  }
+
+  .active,
+  .unread {
+    .avatar-with-status {
+      .badge-bg.sidebar {
+        background: $dk-active-channel-bg;
+      }
+    }
+    .convo-info {
+      h2,
+      h3 {
+        color: $dk-white;
+      }
+    }
+    &:hover {
+      .avatar-with-status {
+        .badge-bg.sidebar {
+          background: $dk-active-channel-bg;
+        }
+      }
+
+      .close-dm {
+        color: $dk-close-dm-active;
+
+        &:hover {
+          color: $dk-white;
+        }
+      }
+    }
+  }
+}
+
+.group-dm-icon {
+  border-radius: 50%;
+  @include flex(row, center, center);
+  color: $dk-white;
+}
+
+.group-dm-icon.blue {
+  background: $dk-blue-dm;
+}
+
+.group-dm-icon.yellow {
+  background: $dk-yellow-dm;
+}
+
+.group-dm-icon.green {
+  background: $dk-green;
+}
+
+.group-dm-icon.red {
+  background: $dk-red;
+}
+
+.group-dm-icon.pink {
+  background: $dk-pink-dm;
+}

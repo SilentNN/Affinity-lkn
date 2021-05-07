@@ -1,0 +1,85 @@
+.context-menu {
+  position: absolute;
+  @include flex(column);
+  width: 188px;
+  padding: 8px;
+  border-radius: 5px;
+  background: $dk-dropdown-bg;
+  z-index: 4;
+
+  button,
+  .server-btn {
+    width: 100%;
+    height: 32px;
+    color: $dk-icons;
+    max-width: 100%;
+    @include flex(row, space-between, center);
+    @include text-overflow;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    span {
+      @include text-overflow;
+      line-height: 1.1;
+    }
+
+    font: {
+      family: "Whitney Medium";
+      size: 14px;
+      weight: 400;
+    }
+
+    &:hover {
+      background: $dk-blue-menu-hover;
+      color: $dk-white;
+    }
+  }
+
+  button.blue {
+    color: $dk-blue-menu-text;
+
+    &:hover {
+      background: $dk-blue-menu-hover;
+      color: $dk-white;
+    }
+  }
+
+  .msg-delete,
+  button.red {
+    color: $dk-red-text;
+
+    &:hover {
+      background: $dk-red;
+      color: $dk-white;
+    }
+  }
+
+  button.no-unreads {
+    cursor: default;
+    color: $dk-no-unreads;
+
+    &:hover {
+      background: transparent;
+      color: $dk-no-unreads;
+    }
+  }
+
+  button.disabled {
+    cursor: not-allowed;
+  }
+
+  .menu-divider {
+    width: 164px;
+    align-self: center;
+    margin: 5px 0;
+    border-bottom: 0.1px solid rgb(66, 69, 74);
+  }
+}
+
+.server-gap {
+  padding-left: 5px;
+  background: "transparent";
+  height: fit-content;
+  width: fit-content;
+}

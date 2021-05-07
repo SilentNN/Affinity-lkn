@@ -1,0 +1,205 @@
+.session-container {
+  height: auto;
+  min-height: 100vh;
+  min-width: 100%;
+  background-image: image-url("session_mask_v2.png"),
+    image-url("session_bg.jpg");
+  background-size: auto, cover;
+  background-position: auto, center;
+  display: flex;
+
+  .logo-group {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    .logo-icon {
+      height: 35px;
+      color: $dk-white;
+    }
+
+    .logo {
+      transform: translateY(2px);
+      height: 40px;
+      color: $dk-white;
+    }
+  }
+
+  .session-form {
+    z-index: 2;
+    background: $dk-main-bg;
+    box-sizing: border-box;
+    width: 786px;
+    height: 410px;
+    border-radius: 3px;
+    padding: 20px;
+    margin: auto;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    -moz-box-shadow: -0.5px -0.5px 3px 0.5px $dk-session-input-b;
+    -webkit-box-shadow: -0.5px -0.5px 3px 0.5px $dk-session-input-b;
+    box-shadow: -0.5px -0.5px 3px 0.5px $dk-session-input-b;
+
+    h1 {
+      font: {
+        family: "Whitney Bold";
+        size: 24px;
+      }
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .session-sub {
+      color: $dk-session-sub;
+      text-align: center;
+      a {
+        font-family: "Whitney Bold";
+        color: $dk-session-sub;
+        &:hover {
+          color: $dk-white;
+        }
+      }
+    }
+
+    .qr-group {
+      width: 40%;
+      padding: 40px 0;
+      padding-left: 45px;
+
+      .qr-code {
+        box-sizing: border-box;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 178px;
+        height: 178px;
+        background: $dk-main-bg;
+        border-radius: 3px;
+
+        img {
+          object-fit: cover;
+          width: 120%;
+          transform: translateX(-20px);
+        }
+      }
+    }
+
+    .form-group {
+      box-sizing: border-box;
+      padding: 15px 12px;
+      width: 435px;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-family: "Whitney Medium";
+        font-weight: 700;
+        color: $dk-session-label;
+        font-size: 12px;
+        margin-top: 22px;
+      }
+
+      input {
+        box-sizing: border-box;
+        background: $dk-session-input-bg;
+        color: $dk-session-sub;
+        border: 0.5px solid $dk-session-input-b;
+        margin-top: 10px;
+        padding: 10px;
+        font: {
+          family: "Whitney Medium";
+        }
+        &:focus {
+          border-color: $dk-blue;
+        }
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        // -webkit-text-fill-color: $dk-session-sub;
+        caret-color: white;
+      }
+
+      .presence-error {
+        color: $dk-red;
+        input {
+          border: 0.5px solid $dk-red;
+        }
+        .session-error {
+          color: $dk-red;
+          font-family: "Whitney Medium Italic";
+        }
+      }
+
+      a,
+      input,
+      button {
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+      }
+
+      button {
+        height: 44px;
+        background: $dk-blue;
+        margin-top: 5px;
+        font: {
+          family: "Whitney Medium";
+          size: 16px;
+        }
+        @include button-transition;
+        &:hover {
+          background: $dk-blue-hover;
+        }
+      }
+
+      p {
+        font: {
+          family: "Whitney Medium";
+          size: 14px;
+        }
+        margin-top: 3px;
+      }
+
+      span {
+        color: $dk-session-p;
+      }
+
+      a {
+        color: $dk-blue;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .session-form.registration {
+    width: 480px;
+    height: 475px;
+    padding-bottom: 18px;
+
+    label {
+      margin-top: 19px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+
+    .disclaimer {
+      color: $dk-session-p;
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+}

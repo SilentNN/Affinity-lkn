@@ -1,0 +1,691 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.settings {
+  overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
+  width: auto;
+  min-width: 100vw;
+  z-index: 10;
+  @include flex(row);
+  position: fixed;
+
+  main {
+    height: auto;
+    min-height: 100vh;
+    width: 65vw;
+    background: $dk-main-bg;
+    padding: 60px 40px 80px;
+
+    header {
+      width: 700px;
+      display: flex;
+      justify-content: space-between;
+
+      h2 {
+        font: {
+          family: "Whitney Medium";
+          size: 16px;
+        }
+        margin-bottom: 20px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+          color: rgb(220, 221, 222);
+          &:hover {
+            color: $dk-white;
+          }
+        }
+
+        h4 {
+          color: rgb(114, 118, 125);
+          font-size: 14px;
+          font-family: "Whitney Medium";
+        }
+      }
+    }
+
+    .user-account,
+    .edit-server-form {
+      height: 145px;
+      width: 662px;
+      border-radius: 3px;
+      border: 0.75px solid rgb(32, 34, 37);
+      background: rgb(41, 43, 47);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .user-edit {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .info {
+        display: flex;
+      }
+
+      .avatar-label {
+        @include flex(column);
+        margin-right: 16px;
+        position: relative;
+
+        .avatar {
+          margin-right: 0;
+        }
+
+        #edit-avatar {
+          position: absolute;
+          background: transparent;
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          z-index: 2;
+          cursor: pointer;
+
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+          }
+
+          &:hover {
+            box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.75);
+
+            &:before {
+              content: "CHANGE AVATAR";
+              text-align: center;
+              transform: translateY(120%);
+              color: $dk-white;
+              font: {
+                family: "Whitney Bold";
+                size: 10px;
+              }
+            }
+          }
+
+          &:focus {
+            border: none;
+          }
+        }
+
+        .reset-avatar {
+          align-self: center;
+          margin-top: 15px;
+          color: rgb(185, 187, 190);
+          font: {
+            family: "Whitney Bold";
+            size: 14px;
+          }
+
+          &:hover {
+            color: rgb(115, 119, 126);
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .avatar {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+        margin-right: 16px;
+        border-radius: 50%;
+      }
+
+      .inputs {
+        width: 75%;
+        margin: {
+          left: 10px;
+        }
+        line-height: 1rem;
+
+        & > * {
+          margin-bottom: 20px;
+        }
+
+        h2 {
+          font: {
+            size: 12px;
+            family: "Whitney Medium";
+          }
+          color: rgb(121, 125, 130);
+          margin-bottom: 4px;
+        }
+
+        p {
+          font: {
+            size: 14px;
+          }
+          color: rgb(180, 182, 185);
+
+          span {
+            color: rgb(113, 114, 118);
+          }
+        }
+      }
+      button {
+        font-family: "Whitney Medium";
+        color: $dk-white;
+        border-radius: 3px;
+      }
+
+      .reset-avatar {
+        align-self: center;
+        margin-top: 15px;
+        color: rgb(185, 187, 190);
+        font: {
+          family: "Whitney Bold";
+          size: 14px;
+        }
+      }
+
+      .edit-btn {
+        background: $dk-blue;
+        width: 61px;
+        height: 33px;
+        justify-self: flex-end;
+        @include button-transition;
+
+        &:hover {
+          background: $dk-blue-hover;
+        }
+      }
+
+      .edit-btn.demo {
+        background: $dk-icons;
+        cursor: not-allowed;
+      }
+    }
+
+    .user-account {
+      position: relative;
+    }
+
+    .user-account.edit {
+      height: auto;
+
+      .inputs {
+        width: 100%;
+      }
+
+      label {
+        display: flex;
+
+        h2 {
+          margin-bottom: 8px;
+        }
+
+        .required {
+          margin-left: 0.2rem;
+          color: $dk-red;
+        }
+      }
+
+      .input-wrapper,
+      input {
+        display: flex;
+        width: 100%;
+        height: 42px;
+        border: 1px solid $dk-session-input-b;
+        border-radius: 3px;
+        color: rgb(213, 214, 215);
+        box-sizing: border-box;
+
+        font: {
+          family: "Whitney";
+          size: 16px;
+          weight: 700;
+        }
+
+        &:focus {
+          border-color: $dk-blue;
+        }
+      }
+
+      input {
+        background: rgb(43, 45, 50);
+        padding: 15px;
+      }
+
+      .input-wrapper {
+        display: flex;
+        background: rgb(41, 43, 47);
+
+        input {
+          background: rgb(38, 40, 45);
+          border: none;
+          height: 100%;
+        }
+
+        .disc {
+          margin: 5px 0;
+          border-left: 0.5px solid rgb(60, 62, 66);
+          padding: 0 20px;
+          display: flex;
+          align-items: center;
+          cursor: not-allowed;
+
+          span {
+            color: rgb(131, 133, 136);
+          }
+        }
+      }
+
+      .input-wrapper.focus {
+        border-color: $dk-blue;
+      }
+
+      .err {
+        border-color: $dk-red;
+        margin-bottom: 7px;
+
+        &:focus {
+          border-color: $dk-red;
+        }
+      }
+
+      .err-msg {
+        margin-top: 10px;
+        color: $dk-red;
+        font: {
+          family: "Whitney";
+          size: 14px;
+        }
+      }
+
+      .cancel:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 0.5px solid rgb(60, 62, 66);
+        padding: 20px 0 0;
+
+        button {
+          padding: 10px 20px;
+        }
+
+        .delete-btn {
+          color: $dk-red;
+          border: 1px solid rgb(105, 57, 62);
+
+          &:hover {
+            border-color: $dk-red;
+          }
+        }
+
+        .save-btn {
+          background: $dk-green;
+
+          &:hover {
+            background: rgb(65, 162, 117);
+          }
+        }
+      }
+    }
+
+    .server-head {
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+
+    .edit-server-form {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      margin-left: 10px;
+
+      .s-icon,
+      #edit-server-icon,
+      .server-icon-preview {
+        width: 100px;
+        height: 100px;
+        border: none;
+      }
+
+      #edit-server-icon {
+        top: 0;
+        left: 0;
+      }
+
+      figcaption {
+        color: rgb(136, 144, 156);
+      }
+
+      .recommend {
+        @include flex(column);
+        margin-left: 30px;
+        margin-right: 20px;
+        min-width: 180px;
+        line-height: 1.25rem;
+
+        p {
+          font-size: 14px;
+          color: rgb(183, 185, 188);
+        }
+
+        .upload-extra {
+          color: $dk-white;
+          border: 1px solid $dk-white;
+          border-radius: 3px;
+          padding: 12px 17px;
+          margin-top: 20px;
+          white-space: nowrap;
+          font: {
+            family: "Whitney Medium";
+            size: 14px;
+          }
+        }
+      }
+
+      .inputs {
+        .input-wrapper {
+          display: flex;
+          flex-direction: column;
+
+          input {
+            box-sizing: border-box;
+            background: $dk-session-input-bg;
+            color: $dk-off-white;
+            border: 0.5px solid $dk-session-input-b;
+            margin-top: 5px;
+            padding: 10px;
+            width: 320px;
+            border-radius: 3px;
+
+            font: {
+              family: "Whitney Medium";
+              size: 14px;
+            }
+
+            &:focus {
+              border-color: $dk-blue;
+            }
+          }
+
+          input.presence-err {
+            border-color: $dk-red;
+          }
+
+          span.presence-err {
+            color: $dk-red;
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+      }
+    }
+
+    .unsaved-warning {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 702px;
+      height: 52px;
+      padding: 10px;
+      background: rgba(24, 25, 28, 0.4);
+      position: fixed;
+      bottom: 15px;
+      border-radius: 3px;
+
+      button {
+        width: 116px;
+        height: 33px;
+        border-radius: 3px;
+        font-family: "Whitney Medium";
+      }
+
+      .save {
+        background: $dk-green;
+        @include button-transition;
+
+        &:hover {
+          background: $dk-green-hover;
+        }
+      }
+
+      .cancel:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.settings-sidebar {
+  height: auto;
+  min-height: 100vh;
+  width: 35vw;
+  background: rgb(47, 49, 54);
+  z-index: 10;
+  @include flex(row, flex-end);
+  position: relative;
+
+  nav {
+    width: 218px;
+    padding: 60px 6px 60px 20px;
+    color: rgb(142, 146, 151);
+
+    h5 {
+      @include text-overflow;
+      max-width: 192px;
+      font: {
+        family: "Whitney Bold";
+        size: 12px;
+      }
+      padding: 0 10px 6px;
+    }
+
+    .server-name {
+      font-size: 13px;
+    }
+
+    .channel-sidebar-head {
+      @include flex(row);
+      @include text-overflow;
+      padding-left: 10px;
+      max-width: 189px;
+
+      .channel-name {
+        max-width: 167px;
+        @include text-overflow;
+        font-size: 14px;
+      }
+
+      .sub-container {
+        @include text-overflow;
+        flex: 0 1 auto;
+
+        .channel-subtitle {
+          padding: 0 10px 6px;
+          @include text-overflow;
+          color: $dk-settings-sidebar-sub;
+          transform: translateY(1px);
+          font: {
+            family: "Whitney Medium";
+            size: 11px;
+          }
+        }
+      }
+
+      .channel-name,
+      .channel-subtitle {
+        padding-left: 5px;
+        padding-right: 0;
+      }
+
+      svg {
+        transform: translateY(6px);
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 0 4px;
+
+      button {
+        width: 100%;
+        height: 31px;
+        text-align: left;
+        // color: rgb(185, 187, 190);
+        padding: 6px 10px;
+        border-radius: 3px;
+        font: {
+          size: 16px;
+          family: "Whitney Medium";
+        }
+      }
+
+      .active {
+        background: rgb(58, 60, 67);
+        color: $dk-white;
+      }
+
+      .divider {
+        width: 89%;
+        margin: 8px auto;
+        // padding: 4px 0;
+        border-bottom: 1px solid rgb(59, 61, 66);
+      }
+
+      .logout {
+        color: $dk-red;
+        &:hover {
+          background: rgb(66, 51, 56);
+        }
+      }
+
+      .icons {
+        padding: 4px 10px;
+
+        & > * {
+          color: rgb(173, 173, 173);
+
+          &:hover {
+            color: $dk-white;
+          }
+
+          .splash-icon {
+            box-sizing: content-box;
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.edit-server-form.channel {
+  margin-left: 0 !important;
+
+  .inputs.channel {
+    margin: 0;
+    width: 100%;
+
+    .channel-info {
+      width: 100%;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .input-wrapper {
+        width: 100%;
+        padding-bottom: 20px;
+
+        input {
+          width: 100%;
+          color: rgb(211, 212, 213);
+          font-family: "Whitney Medium";
+        }
+
+        .presence-err {
+          font-family: "Whitney";
+        }
+
+        textarea {
+          height: 85px;
+          width: 100%;
+          box-sizing: border-box;
+          font-family: "Whitney Medium";
+          color: rgb(211, 212, 213);
+          background: $dk-session-input-bg;
+          border: 0.5px solid $dk-session-input-b;
+          margin-top: 5px;
+          padding: 10px;
+          border-radius: 3px;
+          &:focus {
+            border-color: $dk-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.img-upload {
+  right: 0;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: $dk-off-white;
+  color: $dk-main-bg;
+  position: absolute;
+  z-index: 3;
+  @include flex(row, center, center);
+  cursor: pointer;
+}
+
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 1) {
+  .settings {
+    .settings-sidebar {
+      width: 35vw;
+    }
+
+    main {
+      width: 65vw;
+    }
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 2) {
+  .settings {
+    .settings-sidebar {
+      width: 27vw;
+    }
+
+    main {
+      width: 73vw;
+    }
+  }
+}

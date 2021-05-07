@@ -1,0 +1,312 @@
+$dk-social-icon-size: 20px;
+$dk-p-color: rgb(168, 168, 170);
+$large-screen: 992px;
+$xl-screen: 1200px;
+
+.splash-container {
+  background: $dk-splash-bg;
+  background-image: image-url("splash_footer.png");
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  @include flex(column, space-between, center);
+}
+
+a {
+  text-decoration: none;
+}
+
+.splash-nav {
+  margin: 0 auto;
+  padding: 15px 20px;
+  @include flex(row, space-between, center);
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .splash-logo-icon {
+    height: 35px;
+    color: $dk-white;
+  }
+
+  .splash-logo {
+    transform: translateY(2px);
+    height: 40px;
+    color: $dk-white;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    li {
+      margin: 0 8px;
+      display: flex;
+      flex-direction: row;
+      & :hover {
+        color: $dk-white;
+      }
+    }
+
+    p {
+      color: $dk-splash-nav-color;
+      cursor: pointer;
+      font: {
+        size: 14px;
+      }
+    }
+  }
+
+  .splash-icon {
+    width: $dk-social-icon-size;
+    height: $dk-social-icon-size;
+    color: $dk-splash-nav-color;
+    margin: 0 8px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .splash-nav-btn {
+    background: none;
+    color: $dk-splash-nav-color;
+
+    font: {
+      family: inherit;
+      size: 14px;
+      weight: 700;
+    }
+
+    width: 70px;
+    height: 35px;
+    border: 1.5px solid $dk-splash-nav-color;
+    border-radius: 20px;
+    margin: {
+      left: 8px;
+      right: 8px;
+    }
+    cursor: pointer;
+  }
+
+  .splash-nav-link {
+    & :hover {
+      color: $dk-white;
+    }
+  }
+
+  .splash-nav-link.login {
+    & :hover {
+      border: 1.5px solid $dk-white;
+    }
+  }
+}
+
+.splash-jumbo {
+  width: 850px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  h1 {
+    font: {
+      family: "Whitney Bold";
+      size: 36px;
+    }
+    margin-bottom: 20px;
+  }
+  p {
+    color: $dk-p-color;
+    font-size: 16px;
+    width: 700px;
+    margin-bottom: 30px;
+  }
+
+  .splash-btns {
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    a {
+      margin: 0 20px;
+      z-index: 1;
+      button {
+        width: 250px;
+        height: 100%;
+        border-radius: 3px;
+        font-family: "Whitney Medium";
+      }
+      .splash-jumbo-left {
+        background: $dk-white;
+        color: $dk-splash-bg;
+      }
+      .splash-jumbo-right {
+        background: $dk-blue;
+        @include button-transition;
+        &:hover {
+          background: $dk-blue-hover;
+        }
+      }
+      & :hover {
+        transform: translateY(2px);
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.splash-frame {
+  width: 100%;
+  display: flex;
+  margin-bottom: 25px;
+
+  .splash-img-frame {
+    position: relative;
+  }
+
+  img {
+    height: auto;
+  }
+
+  .floater {
+    position: absolute;
+    animation: float 1.5s ease-in-out 0.4s infinite alternate;
+    z-index: -1;
+  }
+
+  .splash-img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .splash-wifi {
+    width: 125px;
+    left: 147px;
+    bottom: 270px;
+  }
+
+  .splash-wifi-alt {
+    width: 175px;
+    right: -20px;
+    bottom: 60px;
+    animation: none;
+  }
+
+  .splash-prompt {
+    width: 100px;
+    right: 250px;
+    top: 65px;
+  }
+
+  .splash-net {
+    width: 175px;
+    left: -37.5px;
+    bottom: 32px;
+    animation: none;
+  }
+}
+
+.footer-frame {
+  border-top: 0.001rem solid $dk-footer-border;
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h2 {
+    font-family: "Whitney Medium";
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  h3 {
+    font-family: "Whitney Medium";
+    font-size: 14px;
+    color: $dk-p-color;
+    margin-top: 5px;
+  }
+
+  .splash-signup-btn {
+    font-family: "Whitney Medium";
+    width: 115px;
+    height: 45px;
+    background: $dk-blue;
+    border-radius: 3px;
+    @include button-transition;
+    &:hover {
+      background: $dk-blue-hover;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 1) {
+  .splash-nav {
+    width: 85vw;
+  }
+
+  .splash-jumbo {
+    margin-top: 100px;
+  }
+
+  .splash-frame {
+    justify-content: center;
+
+    .splash-img-frame {
+      transform: translateX(19px);
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-device-width: 1921px) and (max-device-width: 2560px) {
+  .splash-container {
+    background-size: cover;
+  }
+  .splash-frame {
+    .splash-img-frame {
+      width: 45%;
+    }
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .splash-nav {
+    width: 95vw;
+  }
+  .splash-jumbo {
+    margin-top: 9%;
+  }
+  .splash-frame {
+    justify-content: flex-end;
+
+    .splash-img-frame {
+      transform: translateX(-7.5px);
+      margin-right: 3%;
+      width: 90%;
+    }
+  }
+
+  .footer-frame {
+    width: 85vw;
+  }
+}

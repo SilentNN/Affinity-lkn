@@ -1,0 +1,476 @@
+.chat-room {
+  position: relative;
+}
+
+.message {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1.0625rem;
+  min-height: 2.75rem;
+  padding: {
+    right: 50px;
+    left: 17px;
+  }
+
+  .avatar {
+    height: 40px;
+    width: 40px;
+    margin: 5px 0;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+
+  .content {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .msg-head {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+
+      font: {
+        family: "Whitney Medium";
+      }
+
+      .author-name {
+        color: $dk-white;
+        cursor: pointer;
+        font: {
+          family: "Whitney Medium";
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .date {
+        padding-left: 8px;
+        color: rgb(114, 118, 125);
+        font: {
+          size: 12px;
+          weight: 400;
+          family: inherit;
+        }
+        transform: translateY(2.5px);
+      }
+    }
+
+    p {
+      font-family: "Whitney";
+      color: rgb(220, 221, 222);
+      transform: translateY(-2px);
+
+      .edited {
+        margin-left: 3px;
+        color: rgb(114, 118, 125);
+        font: {
+          size: 11px;
+          weight: 500;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background: $dk-msg-hover;
+  }
+
+  .msg-options {
+    position: absolute;
+    top: -16px;
+    right: 16px;
+    background: $dk-main-bg;
+    border-radius: 8px;
+    border: 1px solid rgb(47, 50, 55);
+    display: flex;
+    flex-direction: row;
+
+    button {
+      color: $dk-icons;
+      width: 32px;
+      height: 32px;
+
+      &:hover {
+        color: $dk-white;
+        background: rgb(58, 62, 68);
+      }
+    }
+    .msg-edit {
+      border-radius: 8px 0 0 8px;
+      z-index: 2;
+    }
+
+    .msg-more {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .msg-more.solo {
+      border-radius: 8px;
+    }
+  }
+
+  .msg-options.short {
+    top: -28px;
+  }
+
+  .popout {
+    .popout-head {
+      .avatar-with-status {
+        .avatar {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.message.short {
+  margin-top: 3px;
+  min-height: 25px;
+
+  .date {
+    min-width: 41px;
+    white-space: nowrap;
+    text-align: center;
+    opacity: 0;
+    color: rgb(114, 118, 125);
+    font: {
+      size: 10px;
+      family: "Whitney Medium";
+    }
+  }
+
+  img {
+    display: none;
+  }
+
+  .content.short {
+    margin-left: 14px;
+    header {
+      display: none;
+    }
+  }
+  &:hover {
+    .date {
+      opacity: 1;
+    }
+    .date.edit {
+      align-self: flex-start;
+      margin-top: 10px;
+    }
+  }
+}
+
+.chat {
+  width: calc(100vw - 558px);
+  height: calc(100vh - 120px);
+  overflow-y: scroll;
+  padding: 0 4px 22px 0;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $dk-sidebar;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    margin: 4px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background: $dk-search-bg;
+  }
+
+  .loader {
+    width: 100%;
+    color: $dk-blue;
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+  }
+
+  .unread-alert {
+    position: absolute;
+    bottom: 64px;
+    left: 16px;
+    height: 30px;
+    width: calc(100vw - 586px);
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background: $dk-unreads-bg;
+    border-radius: 8px 8px 0 0;
+    color: $dk-white;
+    opacity: 0.95;
+    transition: opacity 0.15s;
+    z-index: 2;
+
+    button {
+      font: {
+        family: "Whitney Medium";
+        weight: 400;
+      }
+      padding: 0 8px;
+    }
+  }
+}
+
+.edit-message-form {
+  width: 100%;
+  padding: 5px 0;
+
+  input {
+    min-height: 45px;
+    max-height: 145px;
+    width: 100%;
+    padding: 11px 16px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: $dk-msg-input-bg;
+    color: rgb(220, 221, 222);
+
+    font: {
+      family: "Whitney";
+      weight: 700;
+      size: 16px;
+    }
+  }
+
+  .edit-txt {
+    margin-top: 10px;
+    color: rgb(114, 118, 125);
+    font: {
+      size: 12px;
+      family: "Whitney Medium";
+    }
+    .edit-link {
+      color: $dk-blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.edit-message-form.short {
+  padding-top: 10px;
+}
+
+.new-message-form {
+  width: calc(100vw - 554px);
+  min-height: 70px;
+  max-height: 170px;
+  padding: 0 16px 0;
+  z-index: 3;
+
+  .unblock-bar {
+    width: 100%;
+    height: 52px;
+    border-radius: 5px;
+    background: $dk-search-bg;
+    color: $dk-white;
+    padding: 9px 12px;
+    @include flex(row, space-between, center);
+
+    .unblock-btn {
+      background: $dk-blue;
+      color: $dk-white;
+      height: 100%;
+      width: 82px;
+      border-radius: 4px;
+      @include button-transition;
+      font: {
+        family: "Whitney Medium";
+      }
+
+      &:hover {
+        background: $dk-blue-hover;
+      }
+    }
+  }
+
+  .input-wrapper {
+    min-height: 45px;
+    max-height: 145px;
+    border-radius: 8px;
+    background: $dk-msg-input-bg;
+    color: $dk-icons;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .add-file {
+      min-height: inherit;
+      max-height: inherit;
+      width: 56px;
+      background: inherit;
+      color: inherit;
+      cursor: not-allowed;
+      border: {
+        top-left-radius: inherit;
+        bottom-left-radius: inherit;
+      }
+    }
+
+    input {
+      min-height: inherit;
+      max-height: inherit;
+      width: 100%;
+      padding: 11px 10px 11px 0;
+      box-sizing: border-box;
+      background: inherit;
+      color: inherit;
+      border: {
+        top-right-radius: inherit;
+        bottom-right-radius: inherit;
+      }
+
+      font: {
+        family: "Whitney";
+        weight: 700;
+        size: 16px;
+      }
+
+      &::placeholder {
+        color: rgb(114, 118, 125);
+      }
+    }
+  }
+}
+
+.chat.wide {
+  width: calc(100vw - 318px);
+}
+
+.new-message-form.wide {
+  width: calc(100vw - 314px);
+}
+
+.unread-alert.wide {
+  width: calc(100vw - 346px);
+}
+
+.msg-dropdown,
+.friend-menu {
+  position: absolute;
+  right: 58px;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 5px;
+  background: $dk-dropdown-bg;
+  z-index: 4;
+
+  button {
+    width: 100%;
+    height: 32px;
+    color: $dk-icons;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 3px;
+
+    font: {
+      family: "Whitney Medium";
+      size: 14px;
+    }
+
+    &:hover {
+      background: $dk-blue-menu-hover;
+      color: $dk-white;
+    }
+  }
+
+  .msg-delete {
+    color: $dk-red;
+
+    &:hover {
+      background: $dk-red;
+      color: $dk-white;
+    }
+  }
+}
+
+.chat-banner {
+  margin: 15px 17px 0;
+  padding-bottom: 15px;
+  max-height: 97%;
+  min-height: 175px;
+  @include flex(column, flex-end, flex-start);
+
+  .avatar {
+    height: 80px;
+    width: 80px;
+  }
+
+  .group-dm-icon {
+    height: 80px;
+    width: 80px;
+  }
+
+  .hed {
+    font-size: 32px;
+    cursor: default;
+    margin: 15px 0;
+    line-height: 1;
+  }
+
+  .sub {
+    color: $dk-icons;
+    cursor: default;
+  }
+}
+
+.border {
+  margin: 0 17px;
+  border-bottom: 0.1px solid rgb(66, 69, 74);
+}
+
+.chat-banner.server {
+  max-width: 370px;
+  min-height: 125px;
+  text-align: center;
+  @include flex(column, flex-end, center);
+  margin: 15px auto 0;
+
+  .hed {
+    line-height: 40px;
+  }
+}
+
+.chat-banner.channel {
+  min-height: 205px;
+
+  .group-dm-icon {
+    background: rgb(79, 84, 92);
+  }
+
+  .edit-btn {
+    margin-top: 10px;
+    line-height: 20px;
+    color: rgb(30, 175, 238);
+    font: {
+      size: 14px;
+      family: "Whitney Medium";
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
