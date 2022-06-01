@@ -33,11 +33,6 @@
     "lib": "lib",
     "test": "test"
   },
-  // "scripts": {
-  //   "start": "webpack --watch --mode=development",
-  //   "prod": "webpack --watch --mode=production",
-  //   "postinstall": "webpack"
-  // },
   "scripts": {
     "dev": "react-scripts start",
     "start": "serve -s build",
